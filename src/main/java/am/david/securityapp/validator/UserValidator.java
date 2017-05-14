@@ -37,11 +37,11 @@ public class UserValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "Required");
 
         if (user.getUserName().length() < 6 || user.getUserName().length() > 20) {
-            errors.rejectValue("username", "Size.userform.username");
+            errors.rejectValue("username", "Size.userform.userName");
         }
 
         if (userService.findByUserName(user.getUserName()) != null) {
-            errors.rejectValue("username", "Duplicate.userform.username");
+            errors.rejectValue("username", "Duplicate.userform.userName");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Required");
@@ -50,7 +50,7 @@ public class UserValidator implements Validator {
             errors.rejectValue("password", "Size.userform.password");
         }
 
-        if (!user.getConfirmPassord().equals(user.getPassword())) {
+        if (!user.getConfirmPassword().equals(user.getPassword())) {
             errors.rejectValue("confirmPassword", "Different.userform.password");
         }
 

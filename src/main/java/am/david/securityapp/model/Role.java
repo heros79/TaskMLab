@@ -1,6 +1,6 @@
 package am.david.securityapp.model;
 
-import org.springframework.security.core.userdetails.User;
+
 import javax.persistence.*;
 import java.util.Set;
 

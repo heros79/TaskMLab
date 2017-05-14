@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+
 /**
  * Implementation of {@link SecurityService} Interface
  * Created by David Karchikyan on 5/14/2017.

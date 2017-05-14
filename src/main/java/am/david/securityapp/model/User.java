@@ -23,7 +23,7 @@ public class User {
     private String password;
 
     @Transient
-    private String confirmPassord;
+    private String confirmPassword;
 
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
@@ -57,12 +57,12 @@ public class User {
         this.password = password;
     }
 
-    public String getConfirmPassord() {
-        return confirmPassord;
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
-    public void setConfirmPassord(String confirmPassord) {
-        this.confirmPassord = confirmPassord;
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public Set<Role> getRoles() {
