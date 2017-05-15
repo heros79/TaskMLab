@@ -1,7 +1,7 @@
 package am.david.securityapp.service;
 
 /**
- * Implementation of {@link org.springframework.security.core.userdetails.UserDetailsService} Interface
+ * Service for Security.
  * Created by David Karchikyan on 5/14/2017.
  */
 
