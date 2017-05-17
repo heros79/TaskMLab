@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 
@@ -39,4 +40,5 @@ public class UserDetailServiceImpl implements UserDetailsService{
         }
         return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), grantedAuthorities);
     }
+
 }

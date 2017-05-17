@@ -1,6 +1,7 @@
 package am.david.securityapp.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,6 +22,9 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "userrank")
+    private int userRank;
 
     @Transient
     private String confirmPassword;
@@ -34,10 +38,12 @@ public class User {
     }
 
     public long getId() {
+
         return id;
     }
 
     public void setId(long id) {
+
         this.id = id;
     }
 
@@ -53,8 +59,14 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password) { this.password = password; }
+
+    public int getUserRank() {
+        return userRank;
+    }
+
+    public void setUserRank(int userRank) {
+        this.userRank = userRank;
     }
 
     public String getConfirmPassword() {

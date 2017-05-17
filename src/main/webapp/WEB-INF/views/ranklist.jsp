@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: David
-  Date: 5/14/2017
-  Time: 10:55 PM
+  Date: 5/16/2017
+  Time: 2:14 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,28 +20,27 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Welcome</title>
+    <title>Rank list</title>
 
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 <body>
 
 <div class="container">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
+    <form id="logoutForm" method="POST" action="${contextPath}/logout">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
-        </h2>
-        <br>
-        <a href="${contextPath}/ranklist">See Users rank</a>
-
+    <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+    </h2>
+    <br>
     </c:if>
 
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="${contextPath}/resources/js/bootstrap.min.js"></script>--%>
 </body>
 </html>
+

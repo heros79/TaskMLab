@@ -71,6 +71,14 @@ public class UserController {
         return "login";
     }
 
+    @RequestMapping(value = "/ranklist", method = RequestMethod.GET)
+    public String rankList (Model model, String logout) {
+        if (logout != null) {
+            return "ranklist";
+        }
+        return "/redirect:/login";
+    }
+
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome (Model model) {
         return "welcome";
