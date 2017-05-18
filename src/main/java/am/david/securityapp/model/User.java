@@ -37,15 +37,9 @@ public class User implements Serializable{
     public User() {
     }
 
-    public long getId() {
+    public long getId() { return id; }
 
-        return id;
-    }
-
-    public void setId(long id) {
-
-        this.id = id;
-    }
+    public void setId(long id) { this.id = id; }
 
     public String getUserName() {
         return userName;
@@ -83,5 +77,13 @@ public class User implements Serializable{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", userRank=" + userRank +
+                '}';
     }
 }

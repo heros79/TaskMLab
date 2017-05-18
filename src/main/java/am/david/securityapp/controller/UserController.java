@@ -72,8 +72,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/ranklist", method = RequestMethod.GET)
-    public String rankList (Model model, String logout) {
-        if (logout != null) {
+    public String rankList (String logout) {
+        if (logout == null) {
             return "ranklist";
         }
         return "/redirect:/login";

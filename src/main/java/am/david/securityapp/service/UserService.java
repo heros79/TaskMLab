@@ -16,5 +16,5 @@ public interface UserService {
 
     User findByUserName(String userName);
 
-    List<User> getRankList ();
+    List<User> getRankList (User user);
 }

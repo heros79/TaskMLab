@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
     public void saveRank(User user) {
         int userRank = new Random().nextInt(100);
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("UPDATE mlab SET userrank=userrank+" + userRank + "WHERE username = :nameCode");
+        Query query = session.createQuery("UPDATE users SET userrank=userrank+" + userRank + "WHERE username = :nameCode");
         query.setParameter("nameCode", user.getUserName());
     }
 
@@ -66,11 +66,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getRankList() {
+    public List<User> getRankList(User user) {
+
         Session session = sessionFactory.getCurrentSession();
 
-        Query query = session.createQuery("FROM users");
-
-        return  query.list();
+        return  session.createCriteria(" " + user.getUserName() + " " + user.getUserRank()).list();
     }
 }
