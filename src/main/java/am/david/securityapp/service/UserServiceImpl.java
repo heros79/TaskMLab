@@ -4,19 +4,12 @@ import am.david.securityapp.dao.RoleDao;
 import am.david.securityapp.dao.UserDao;
 import am.david.securityapp.model.Role;
 import am.david.securityapp.model.User;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Implementation of {@link UserService} Interface
@@ -36,16 +29,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Resource(name = "sessionFactory")
-    @Autowired
-    private SessionFactory sessionFactory;
-
     public UserServiceImpl() {
     }
 
     @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        int userRank = new Random().nextInt(100);
+        user.setUserRank(user.getUserRank() + userRank);
         Set<Role> roles = new HashSet<>();
         roles.add(roleDao.getOne(1L));
         user.setRoles(roles);
@@ -53,11 +44,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveRank(User user) {
-        int userRank = new Random().nextInt(100);
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("UPDATE users SET userrank=userrank+" + userRank + "WHERE username = :nameCode");
-        query.setParameter("nameCode", user.getUserName());
+    public int saveRank(User user) {
+        return userDao.setRank(user.getUserRank() + new Random().nextInt(100));
     }
 
     @Override
@@ -66,10 +54,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getRankList(User user) {
+    public List<User> getRankList() {
 
-        Session session = sessionFactory.getCurrentSession();
+        List<User> list = new LinkedList<>();
+        list.addAll(userDao.findAll());
 
-        return  session.createCriteria(" " + user.getUserName() + " " + user.getUserRank()).list();
+        return  list;
     }
 }

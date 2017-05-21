@@ -1,8 +1,12 @@
 package am.david.securityapp.model;
 
+import org.springframework.data.jpa.repository.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  * Simple JavaBean Object that represents role of a User.

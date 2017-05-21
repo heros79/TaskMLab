@@ -3,6 +3,7 @@ package am.david.securityapp.controller;
 import am.david.securityapp.model.User;
 import am.david.securityapp.service.SecurityService;
 import am.david.securityapp.service.UserService;
+import am.david.securityapp.validator.LoginListener;
 import am.david.securityapp.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,9 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
+    @Autowired
+    private LoginListener listener;
+
     public UserController() {
     }
 
@@ -42,7 +46,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration (@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public String registration (@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
 
         userValidator.validate(userForm, bindingResult);
 
@@ -57,6 +61,12 @@ public class UserController {
         return "redirect:/welcome";
     }
 
+/*    @RequestMapping (value = "/login", method = RequestMethod.POST)
+    public String loggin (Model model) {
+        model.addAttribute("listner", new LoginListener());
+        return "login";
+    }*/
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loggin (Model model, String error, String logout) {
 
@@ -67,12 +77,14 @@ public class UserController {
         if (logout != null) {
             model.addAttribute("massage", "Logged out is succesfully");
         }
-
+        model.addAttribute("listner", listener);
         return "login";
     }
 
     @RequestMapping(value = "/ranklist", method = RequestMethod.GET)
-    public String rankList (String logout) {
+    public String rankList (Model model, String logout) {
+
+        model.addAttribute("list", userService.getRankList());
         if (logout == null) {
             return "ranklist";
         }

@@ -1,6 +1,7 @@
 package am.david.securityapp.service;
 
 import am.david.securityapp.model.User;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -12,9 +13,9 @@ public interface UserService {
 
     void save(User user);
 
-    void saveRank(User user);
+    int saveRank(User user);
 
     User findByUserName(String userName);
 
-    List<User> getRankList (User user);
+    List<User> getRankList ();
 }
