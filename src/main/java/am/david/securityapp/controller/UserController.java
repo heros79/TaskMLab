@@ -31,8 +31,8 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-    @Autowired
-    private LoginListener listener;
+  /*  @Autowired
+    private LoginListener listener;*/
 
     public UserController() {
     }
@@ -61,11 +61,11 @@ public class UserController {
         return "redirect:/welcome";
     }
 
-/*    @RequestMapping (value = "/login", method = RequestMethod.POST)
-    public String loggin (Model model) {
-        model.addAttribute("listner", new LoginListener());
+    @RequestMapping (value = "/login", method = RequestMethod.POST)
+    public String loggin (@ModelAttribute("userName") User userName, Model model) {
+        model.addAttribute("listner", userService.saveRank(userName));
         return "login";
-    }*/
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loggin (Model model, String error, String logout) {
@@ -77,7 +77,7 @@ public class UserController {
         if (logout != null) {
             model.addAttribute("massage", "Logged out is succesfully");
         }
-        model.addAttribute("listner", listener);
+
         return "login";
     }
 

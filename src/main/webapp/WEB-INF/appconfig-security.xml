@@ -27,7 +27,7 @@
     <beans:bean id="userDetailsServiceImpl"
                 class="am.david.securityapp.service.UserDetailServiceImpl"></beans:bean>
 
-    <beans:bean id="listener" class="am.david.securityapp.validator.LoginListener"></beans:bean>
+   <!-- <beans:bean id="listener" class="am.david.securityapp.validator.LoginListener"></beans:bean>-->
 
     <beans:bean id="encoder"
                 class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

@@ -45,7 +45,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int saveRank(User user) {
-        return userDao.setRank(user.getUserRank() + new Random().nextInt(100));
+
+        return userDao.setRank(user.getUserRank() + new Random().nextInt(100), user.getUserName());
     }
 
     @Override
