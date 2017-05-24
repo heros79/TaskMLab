@@ -11,6 +11,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -36,15 +38,12 @@
 
 <div class="container">
 
-    <form:form method="POST" modelAttribute="userName" action="${contextPath}/login" class="form-signin">
+    <form:form method="POST" action="${contextPath}/login" class="form-signin">
         <h2 class="form-heading">Log in</h2>
-
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
-            <spring:bind path="userName">
-            <form:input path="userName" name="username" type="text" class="form-control" placeholder="Username"
-                        autofocus="true"></form:input>
-            </spring:bind>
+            <input name="username" type="text" class="form-control" placeholder="Username"
+                        autofocus="true"/>
             <input name="password" type="password" class="form-control" placeholder="Password"/>
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

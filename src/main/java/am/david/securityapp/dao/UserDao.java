@@ -13,6 +13,6 @@ public interface UserDao extends JpaRepository<User, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE users SET userrank = ?1 WHERE username = ?2", nativeQuery = true)
+    @Query(value = "UPDATE users SET userrank = userrank + :userrank WHERE username = :username", nativeQuery = true)
     int setRank (@Param("userrank") int userRank, @Param("username") String userName);
 }

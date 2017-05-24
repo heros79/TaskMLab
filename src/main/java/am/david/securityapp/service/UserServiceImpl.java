@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.util.*;
 
 /**
@@ -29,6 +30,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private SecurityServiceImpl securityService;
+
     public UserServiceImpl() {
     }
 
@@ -41,12 +45,6 @@ public class UserServiceImpl implements UserService {
         roles.add(roleDao.getOne(1L));
         user.setRoles(roles);
         userDao.save(user);
-    }
-
-    @Override
-    public int saveRank(User user) {
-
-        return userDao.setRank(user.getUserRank() + new Random().nextInt(100), user.getUserName());
     }
 
     @Override

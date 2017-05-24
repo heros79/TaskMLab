@@ -3,7 +3,6 @@ package am.david.securityapp.controller;
 import am.david.securityapp.model.User;
 import am.david.securityapp.service.SecurityService;
 import am.david.securityapp.service.UserService;
-import am.david.securityapp.validator.LoginListener;
 import am.david.securityapp.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +29,7 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
 
   /*  @Autowired
     private LoginListener listener;*/
@@ -61,12 +61,6 @@ public class UserController {
         return "redirect:/welcome";
     }
 
-    @RequestMapping (value = "/login", method = RequestMethod.POST)
-    public String loggin (@ModelAttribute("userName") User userName, Model model) {
-        model.addAttribute("listner", userService.saveRank(userName));
-        return "login";
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loggin (Model model, String error, String logout) {
 
@@ -92,7 +86,7 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome (Model model) {
+    public String welcome (User user, Model model) {
         return "welcome";
     }
 

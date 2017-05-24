@@ -1,5 +1,6 @@
 package am.david.securityapp.service;
 
+/*import am.david.securityapp.model.User;*/
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
@@ -31,11 +32,13 @@ public class SecurityServiceImpl implements SecurityService{
     public SecurityServiceImpl() {
     }
 
+
+
     @Override
     public String findLoggedByUserName() {
         Object userDetalis = SecurityContextHolder.getContext().getAuthentication().getDetails();
 
-        if (userDetalis instanceof UserDetails) {
+        if (userDetalis instanceof UserDetailServiceImpl) {
             return ((UserDetails) userDetalis).getUsername();
         }
         return null;
