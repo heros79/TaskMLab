@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TaskMLab:war">
+    <output-path>$PROJECT_DIR$/../TaskMLab/target</output-path>
+    <root id="archive" name="TaskMLab.war">
+      <element id="artifact" artifact-name="TaskMLab:war exploded" />
+    </root>
+  </artifact>
+</component>
